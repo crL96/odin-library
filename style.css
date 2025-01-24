@@ -1,0 +1,127 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+  
+* {
+    margin: 0;
+}
+  
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+  
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+  
+input, button, textarea, select {
+    font: inherit;
+}
+  
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+  
+p {
+    text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+  
+#root, #__next {
+    isolation: isolate;
+}
+
+table {
+    border-collapse: collapse;
+}
+tr {
+    border-bottom: 1px solid #ccc;
+}
+th, td {
+    text-align: left;
+    padding: 4px;
+}
+
+/* END OF RESET */
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('fonts/roboto-variablefont_wdthwght-webfont.woff2') format('woff2'),
+         url('fonts/roboto-variablefont_wdthwght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    font-family: "robotoregular", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --accentclr: rgb(185, 185, 185)
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+header {
+    text-align: center;
+    background-color: var(--accentclr);
+    padding: 1.4rem;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    gap: 3rem;
+    padding: 3rem;
+}
+
+.book {
+    height: 25rem;
+    border: 5px solid rgba(122, 104, 82, 0.466);
+    text-align: center;
+    padding: 1rem;
+    background-color: bisque;
+    box-shadow: 5px 5px 8px rgba(128, 128, 128, 0.315);
+}
+
+.book:hover {
+    font-size: 105%;
+}
+
+.book > p {
+    margin: 1rem;
+}
+
+.bookAuthor {
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+#dialogBox {
+    margin: auto;
+    background-color: var(--accentclr);
+}
+
+#buttonAdd {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--accentclr);
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    box-shadow: 1px 1px 5px grey;
+}
+
+#buttonAdd:hover {
+    background-color: grey;
+}
