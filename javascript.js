@@ -17,6 +17,7 @@ function addBookToLibrary(title, author, pages, read) {
 
 function displayBooks() {
     const libraryContainer = document.querySelector("#libraryContainer");
+    libraryContainer.replaceChildren();
     for (let book of myLibrary) {
         const bookContainer = document.createElement("div");
         bookContainer.classList.add("book");
@@ -34,7 +35,7 @@ function displayBooks() {
 
         const pages = document.createElement("p");
         pages.classList.add("bookPages");
-        pages.textContent = book.pages;
+        pages.textContent = book.pages + " pages";
         bookContainer.appendChild(pages);
 
         const readStatus = document.createElement("p");
@@ -53,3 +54,26 @@ addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, true);
 
 displayBooks();
+
+const addBookBtn = document.querySelector("[data-open-modal]");
+const dialogBox = document.querySelector("[data-modal]");
+const submitBookBtn = document.querySelector("[data-close-modal]");
+
+addBookBtn.addEventListener("click", () => {
+    dialogBox.showModal();
+});
+
+submitBookBtn.addEventListener("click", () => {
+    const valueTitle = document.getElementById("bookTitle").value;
+    const valueAuthor = document.getElementById("bookAuthor").value;
+    const valuePages = document.getElementById("bookPages").value;
+    let valueRead = false;
+    if (document.querySelector('#bookRead:checked')) {
+        valueRead = true;
+    }
+
+    addBookToLibrary(valueTitle, valueAuthor, valuePages, valueRead);
+    displayBooks();
+    dialogBox.close();
+});
+
