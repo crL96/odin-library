@@ -6,9 +6,6 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
 }
-// Book.prototype.info = function() {
-//     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-// }
 
 function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read)
@@ -16,6 +13,7 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks() {
+    let indexCounter = 0;
     const libraryContainer = document.querySelector("#libraryContainer");
     libraryContainer.replaceChildren();
     for (let book of myLibrary) {
@@ -47,13 +45,20 @@ function displayBooks() {
             readStatus.textContent = "Have not read";
         }
         bookContainer.appendChild(readStatus);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("deleteBtn");
+        deleteBtn.setAttribute("ID", indexCounter);
+        indexCounter++;
+        deleteBtn.textContent = "Delete Book";
+        bookContainer.appendChild(deleteBtn);
+
+        deleteBtn.addEventListener("click", (e) => {
+            myLibrary.splice(e.target.id, 1);
+            displayBooks();
+        });
     }
 }
-
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
-addBookToLibrary("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, true);
-
-displayBooks();
 
 const addBookBtn = document.querySelector("[data-open-modal]");
 const dialogBox = document.querySelector("[data-modal]");
@@ -71,9 +76,14 @@ submitBookBtn.addEventListener("click", () => {
     if (document.querySelector('#bookRead:checked')) {
         valueRead = true;
     }
-
+    
     addBookToLibrary(valueTitle, valueAuthor, valuePages, valueRead);
     displayBooks();
     dialogBox.close();
 });
 
+
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
+addBookToLibrary("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, true);
+
+displayBooks();
