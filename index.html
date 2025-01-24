@@ -20,30 +20,27 @@
 
     <dialog data-modal id="dialogBox">
         <form action="" method="post">
-            <legend>Add New Book</legend>
-            <div>
-                <label for="bookTitle">Title:
+                <div id="formContainer">
+                <legend>Add New Book</legend>
+                <div>
+                    <label for="bookTitle">Title:</label>
                     <input type="text" name="title" id="bookTitle">
-                </label>
-            </div>
-            <div>
-                <label for="bookAuthor">Author:
+                </div>
+                <div>
+                    <label for="bookAuthor">Author:</label>
                     <input type="text" name="author" id="bookAuthor">
-                </label>
-            </div>
-            <div>
-                <label for="bookPages">Pages:
+                </div>
+                <div>
+                    <label for="bookPages">Pages:</label>
                     <input type="number" name="pages" id="bookPages" min="1">
-                </label>
-            </div>
-            <div>
-                <label for="bookRead">Read:
-                    <input type="hidden" name="read" id="bookRead" value="false">
+                </div>
+                <div>
+                    <label for="bookRead">Read:</label>
                     <input type="checkbox" name="read" id="bookRead" value="true">
-                </label>
+                </div>
+                <button type="button" data-close-modal>Add</button>
             </div>
-            <button type="button" data-close-modal>Add</button>
-        </form>
+            </form>
     </dialog>
     
     <script src="javascript.js"></script>
