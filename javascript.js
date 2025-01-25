@@ -50,15 +50,16 @@ function displayBooks() {
         const readStatus = document.createElement("p");
         readStatus.classList.add("bookRead");
         if (book.read === true) {
-            readStatus.textContent = "Have read";
+            readStatus.textContent = "You have read this book";
         }
         else {
-            readStatus.textContent = "Have not read";
+            readStatus.textContent = "You have not read this book";
         }
         bookContainer.appendChild(readStatus);
 
         const deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("deleteBtn");
+        deleteBtn.classList.add("btnBook");
+        deleteBtn.setAttribute("ID", "deleteBtn");
         deleteBtn.textContent = "Delete Book";
         bookContainer.appendChild(deleteBtn);
 
@@ -68,6 +69,8 @@ function displayBooks() {
         });
 
         const readBtn = document.createElement("button");
+        readBtn.classList.add("btnBook");
+        readBtn.setAttribute("ID", "readBtn");
         readBtn.textContent = "Toggle Read";
         bookContainer.appendChild(readBtn);
 

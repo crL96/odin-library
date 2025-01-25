@@ -63,7 +63,8 @@ th, td {
 
 :root {
     font-family: "robotoregular", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --accentclr: rgb(185, 185, 185)
+    --accentclr: rgba(122, 104, 82, 0.466);
+    --mainclr: bisque;
 }
 
 body {
@@ -74,6 +75,7 @@ header {
     text-align: center;
     background-color: var(--accentclr);
     padding: 1.4rem;
+    box-shadow: 0px 5px 10px rgba(128, 128, 128, 0.37);
 }
 
 .container {
@@ -88,12 +90,14 @@ header {
     border: 5px solid rgba(122, 104, 82, 0.466);
     text-align: center;
     padding: 1rem;
-    background-color: bisque;
+    background-color: var(--mainclr);
     box-shadow: 5px 5px 8px rgba(128, 128, 128, 0.315);
+    position: relative;
+    border-radius: 1rem
 }
 
 .book:hover {
-    font-size: 105%;
+    border-color: rgba(73, 60, 45, 0.466);
 }
 
 .book > p {
@@ -107,7 +111,7 @@ header {
 
 #dialogBox {
     margin: auto;
-    background-color: var(--accentclr);
+    background-color: var(--mainclr);
 }
 
 #formContainer {
@@ -139,6 +143,24 @@ legend {
     box-shadow: 1px 1px 5px grey;
 }
 
+.btnBook {
+    position: absolute;
+    bottom: 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--accentclr);
+}
+
+#readBtn {
+    left: 1.5rem;
+}
+
+#deleteBtn {
+    right: 1.5rem;
+}
+
+.btnBook:hover,
 #buttonAdd:hover {
-    background-color: grey;
+    color: var(--mainclr);
 }
