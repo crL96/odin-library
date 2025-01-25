@@ -7,6 +7,15 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggleRead = function() {
+    if (this.read === true) {
+        this.read = false;
+    }
+    else {
+        this.read = true;
+    }
+}
+
 function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read)
     myLibrary.push(newBook);
@@ -19,6 +28,8 @@ function displayBooks() {
     for (let book of myLibrary) {
         const bookContainer = document.createElement("div");
         bookContainer.classList.add("book");
+        bookContainer.setAttribute("ID", indexCounter);
+        indexCounter++;
         libraryContainer.appendChild(bookContainer);
 
         const title = document.createElement("h2");
@@ -48,13 +59,21 @@ function displayBooks() {
 
         const deleteBtn = document.createElement("button");
         deleteBtn.classList.add("deleteBtn");
-        deleteBtn.setAttribute("ID", indexCounter);
-        indexCounter++;
         deleteBtn.textContent = "Delete Book";
         bookContainer.appendChild(deleteBtn);
 
         deleteBtn.addEventListener("click", (e) => {
-            myLibrary.splice(e.target.id, 1);
+            myLibrary.splice(e.currentTarget.parentNode.id, 1);
+            displayBooks();
+        });
+
+        const readBtn = document.createElement("button");
+        readBtn.textContent = "Toggle Read";
+        bookContainer.appendChild(readBtn);
+
+        readBtn.addEventListener("click", (e) => {
+            console.log(e.currentTarget.parentNode.id);
+            myLibrary[e.currentTarget.parentNode.id].toggleRead();
             displayBooks();
         });
     }
