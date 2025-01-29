@@ -1,4 +1,4 @@
-const myLibrary = [];
+// const myLibrary = [];
 
 class Book {
     constructor(title, author, pages, read) {
@@ -18,71 +18,78 @@ class Book {
 }
 
 
-function addBookToLibrary(title, author, pages, read) {
-    let newBook = new Book(title, author, pages, read)
-    myLibrary.push(newBook);
-}
+class Library {
+    constructor() {
+        this.allBooks = [];
+    }
 
-function displayBooks() {
-    let indexCounter = 0;
-    const libraryContainer = document.querySelector("#libraryContainer");
-    libraryContainer.replaceChildren();
-    for (let book of myLibrary) {
-        const bookContainer = document.createElement("div");
-        bookContainer.classList.add("book");
-        bookContainer.setAttribute("ID", indexCounter);
-        indexCounter++;
-        libraryContainer.appendChild(bookContainer);
+    addBook(title, author, pages, read) {
+        let newBook = new Book(title, author, pages, read);
+        this.allBooks.push(newBook);
+    }
 
-        const title = document.createElement("h2");
-        title.classList.add("bookTitle");
-        title.textContent = book.title;
-        bookContainer.appendChild(title);
+    displayBooks() {
+        let indexCounter = 0;
+        const libraryContainer = document.querySelector("#libraryContainer");
+        libraryContainer.replaceChildren();
+        for (let book of this.allBooks) {
+            const bookContainer = document.createElement("div");
+            bookContainer.classList.add("book");
+            bookContainer.setAttribute("ID", indexCounter);
+            indexCounter++;
+            libraryContainer.appendChild(bookContainer);
 
-        const author = document.createElement("p");
-        author.classList.add("bookAuthor");
-        author.textContent = book.author;
-        bookContainer.appendChild(author);
+            const title = document.createElement("h2");
+            title.classList.add("bookTitle");
+            title.textContent = book.title;
+            bookContainer.appendChild(title);
 
-        const pages = document.createElement("p");
-        pages.classList.add("bookPages");
-        pages.textContent = book.pages + " pages";
-        bookContainer.appendChild(pages);
+            const author = document.createElement("p");
+            author.classList.add("bookAuthor");
+            author.textContent = book.author;
+            bookContainer.appendChild(author);
 
-        const readStatus = document.createElement("p");
-        readStatus.classList.add("bookRead");
-        if (book.read === true) {
-            readStatus.textContent = "You have read this book";
-        }
-        else {
-            readStatus.textContent = "You have not read this book";
-        }
-        bookContainer.appendChild(readStatus);
+            const pages = document.createElement("p");
+            pages.classList.add("bookPages");
+            pages.textContent = book.pages + " pages";
+            bookContainer.appendChild(pages);
 
-        const deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("btnBook");
-        deleteBtn.setAttribute("ID", "deleteBtn");
-        deleteBtn.textContent = "Delete Book";
-        bookContainer.appendChild(deleteBtn);
+            const readStatus = document.createElement("p");
+            readStatus.classList.add("bookRead");
+            if (book.read === true) {
+                readStatus.textContent = "You have read this book";
+            }
+            else {
+                readStatus.textContent = "You have not read this book";
+            }
+            bookContainer.appendChild(readStatus);
 
-        deleteBtn.addEventListener("click", (e) => {
-            myLibrary.splice(e.currentTarget.parentNode.id, 1);
-            displayBooks();
-        });
+            const deleteBtn = document.createElement("button");
+            deleteBtn.classList.add("btnBook");
+            deleteBtn.setAttribute("ID", "deleteBtn");
+            deleteBtn.textContent = "Delete Book";
+            bookContainer.appendChild(deleteBtn);
 
-        const readBtn = document.createElement("button");
-        readBtn.classList.add("btnBook");
-        readBtn.setAttribute("ID", "readBtn");
-        readBtn.textContent = "Toggle Read";
-        bookContainer.appendChild(readBtn);
+            deleteBtn.addEventListener("click", (e) => {
+                this.allBooks.splice(e.currentTarget.parentNode.id, 1);
+                this.displayBooks();
+            });
 
-        readBtn.addEventListener("click", (e) => {
-            console.log(e.currentTarget.parentNode.id);
-            myLibrary[e.currentTarget.parentNode.id].toggleRead();
-            displayBooks();
-        });
+            const readBtn = document.createElement("button");
+            readBtn.classList.add("btnBook");
+            readBtn.setAttribute("ID", "readBtn");
+            readBtn.textContent = "Toggle Read";
+            bookContainer.appendChild(readBtn);
+
+            readBtn.addEventListener("click", (e) => {
+                console.log(e.currentTarget.parentNode.id);
+                this.allBooks[e.currentTarget.parentNode.id].toggleRead();
+                this.displayBooks();
+            });
+        }   
     }
 }
+
 
 const addBookBtn = document.querySelector("[data-open-modal]");
 const dialogBox = document.querySelector("[data-modal]");
@@ -101,13 +108,14 @@ submitBookBtn.addEventListener("click", () => {
         valueRead = true;
     }
     
-    addBookToLibrary(valueTitle, valueAuthor, valuePages, valueRead);
-    displayBooks();
+    myLibrary.addBook(valueTitle, valueAuthor, valuePages, valueRead);
+    myLibrary.displayBooks();
     dialogBox.close();
 });
 
+const myLibrary = new Library();
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
-addBookToLibrary("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, true);
+myLibrary.addBook("The Hobbit", "J.R.R. Tolkien", 295, false);
+myLibrary.addBook("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, true);
 
-displayBooks();
+myLibrary.displayBooks();
