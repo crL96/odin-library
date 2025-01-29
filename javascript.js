@@ -1,20 +1,22 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+    toggleRead() {
+        if (this.read === true) {
+            this.read = false;
+        }
+        else {
+            this.read = true;
+        }
+    }
 }
 
-Book.prototype.toggleRead = function() {
-    if (this.read === true) {
-        this.read = false;
-    }
-    else {
-        this.read = true;
-    }
-}
 
 function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read)
