@@ -99,18 +99,17 @@ addBookBtn.addEventListener("click", () => {
     dialogBox.showModal();
 });
 
-submitBookBtn.addEventListener("click", () => {
-    const valueTitle = document.getElementById("bookTitle").value;
-    const valueAuthor = document.getElementById("bookAuthor").value;
-    const valuePages = document.getElementById("bookPages").value;
-    let valueRead = false;
-    if (document.querySelector('#bookRead:checked')) {
-        valueRead = true;
-    }
+const newBookForm = document.querySelector("#newBookForm");
+
+newBookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formdata = new FormData(newBookForm);
+    const newBook = Object.fromEntries(formdata);
     
-    myLibrary.addBook(valueTitle, valueAuthor, valuePages, valueRead);
+    myLibrary.addBook(newBook.title, newBook.author, newBook.pages, newBook.read);
     myLibrary.displayBooks();
     dialogBox.close();
+    newBookForm.reset();
 });
 
 const myLibrary = new Library();

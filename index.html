@@ -19,7 +19,7 @@
     <button id="buttonAdd" type="button" data-open-modal>Add Book</button>
 
     <dialog data-modal id="dialogBox">
-        <form action="" method="post">
+        <form action="" method="post" id="newBookForm">
                 <div id="formContainer">
                 <legend>Add New Book</legend>
                 <div>
@@ -36,9 +36,10 @@
                 </div>
                 <div>
                     <label for="bookRead">Read:</label>
+                    <input type="hidden" name="read" value="false">
                     <input type="checkbox" name="read" id="bookRead" value="true">
                 </div>
-                <button type="button" data-close-modal>Add</button>
+                <button type="submit" data-close-modal>Add</button>
             </div>
             </form>
     </dialog>
