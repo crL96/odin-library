@@ -28,6 +28,7 @@ class Library {
         this.allBooks.push(newBook);
     }
 
+    // Should be under UI
     displayBooks() {
         let indexCounter = 0;
         const libraryContainer = document.querySelector("#libraryContainer");
@@ -90,7 +91,7 @@ class Library {
     }
 }
 
-
+// UI
 const addBookBtn = document.querySelector("[data-open-modal]");
 const dialogBox = document.querySelector("[data-modal]");
 const submitBookBtn = document.querySelector("[data-close-modal]");
@@ -112,6 +113,8 @@ newBookForm.addEventListener("submit", (e) => {
     newBookForm.reset();
 });
 
+
+// Init
 const myLibrary = new Library();
 
 myLibrary.addBook("The Hobbit", "J.R.R. Tolkien", 295, false);
